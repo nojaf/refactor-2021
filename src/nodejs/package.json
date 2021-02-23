@@ -2,8 +2,11 @@
   "name": "",
   "version": "",
   "description": "",
-  "scripts" : {
-    "test": "echo \"No tests yet...\""
+  "scripts": {
+    "build": "esbuild ./Prime/Index.fs.js --bundle --outfile=./Prime/out.js --platform=node --target=node12"
   },
-  "author": ""
+  "author": "",
+  "devDependencies": {
+    "esbuild": "^0.8.50"
+  }
 }
