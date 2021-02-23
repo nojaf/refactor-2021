@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AzureFunctions.fs" />
     <Compile Include="Index.fs" />
   </ItemGroup>
 
