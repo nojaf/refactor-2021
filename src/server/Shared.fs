@@ -10,6 +10,7 @@ let fibonacci n =
             | _ ->
                 match acc with
                 | a :: b :: _ -> (a + b) :: acc
-                | _ -> acc)
+                | _ -> acc
+        )
         []
     |> List.head

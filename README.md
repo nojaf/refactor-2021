@@ -4,6 +4,8 @@
 
  func start --javascript --port 7000 --verbose
 
- docker run -it --rm -v "$(pwd):/app" -w "/app" mcr.microsoft.com/dotnet/sdk:5.0 bash
+ docker run -it --rm -v "$(pwd):/workspace" -w "/workspace" -p "8000:8000"  mcr.microsoft.com/azure-functions/dotnet:3.0.3284-dotnet3-core-tools bash
+
+func start --csharp --port 8000 --verbose
 
  https://github.com/evanw/esbuild/issues/37

@@ -1,57 +1,39 @@
-namespace Company.Function
+module Fibonacci.Function
 
-open System
-open System.IO
-open Microsoft.AspNetCore.Mvc
 open Microsoft.Azure.WebJobs
 open Microsoft.Azure.WebJobs.Extensions.Http
 open Microsoft.AspNetCore.Http
-open Newtonsoft.Json
 open Microsoft.Extensions.Logging
+open System.Net
+open System.Net.Http
+open Fibonacci.Shared
 
-module Fibonacci =
-    // Define a nullable container to deserialize into.
-    [<AllowNullLiteral>]
-    type NameContainer() =
-        member val Name = "" with get, set
+let private sendText text =
+    new HttpResponseMessage (
+        HttpStatusCode.OK,
+        Content = new StringContent (text, System.Text.Encoding.UTF8, "text/plain")
+    )
 
-    // For convenience, it's better to have a central place for the literal.
-    [<Literal>]
-    let Name = "name"
+let private sendBadRequest error =
+    new HttpResponseMessage (
+        HttpStatusCode.BadRequest,
+        Content = new StringContent (error, System.Text.Encoding.UTF8, "text/plain")
+    )
 
-    [<FunctionName("Fibonacci")>]
-    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci")>] req: HttpRequest) (log: ILogger) =
-        async {
-            log.LogInformation("F# HTTP trigger function processed a request.")
+[<FunctionName("Fibonacci")>]
+let run
+    ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci/{n:int}")>] req : HttpRequest)
+    (log : ILogger)
+    (n : int)
+    =
+    async {
+        log.LogInformation ("F# HTTP trigger function processed a request.")
 
-            let nameOpt =
-                if req.Query.ContainsKey(Name) then
-                    Some(req.Query.[Name].[0])
-                else
-                    None
-
-            use stream = new StreamReader(req.Body)
-            let! reqBody = stream.ReadToEndAsync() |> Async.AwaitTask
-
-            let data =
-                JsonConvert.DeserializeObject<NameContainer>(reqBody)
-
-            let name =
-                match nameOpt with
-                | Some n -> n
-                | None ->
-                    match data with
-                    | null -> ""
-                    | nc -> nc.Name
-
-            let responseMessage =
-                if (String.IsNullOrWhiteSpace(name)) then
-                    "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                else
-                    "Hello, "
-                    + name
-                    + ". This HTTP triggered function executed successfully."
-
-            return OkObjectResult(responseMessage) :> IActionResult
-        }
-        |> Async.StartAsTask
+        if n > 0 then
+            log.LogInformation (sprintf "Calculating Fibonacci for %i" n)
+            return sendText (string (fibonacci n))
+        else
+            log.LogWarning(sprintf "Invalid n: %i" n)
+            return sendBadRequest (sprintf "Value for n should be positive, instead got %i" n)
+    }
+    |> Async.StartAsTask

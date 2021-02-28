@@ -40,7 +40,7 @@ type AzureFunction =
     /// result will be passed to JSON.stringify unless it is a string, Buffer, ArrayBufferView, or number.
     /// </returns>
     [<Emit "$0($1...)">]
-    abstract Invoke : context: Context * [<ParamArray>] args: obj option [] -> U2<Promise<obj option>, unit>
+    abstract Invoke : context : Context * [<ParamArray>] args : obj option [] -> U2<Promise<obj option>, unit>
 
 /// The context object can be used for writing logs, reading data from bindings, setting outputs and using
 /// the context.done callback when your exported function is synchronous. A context object is passed
@@ -73,7 +73,7 @@ type Context =
     /// An object containing output binding data. <c>result</c> will be passed to JSON.stringify unless it is
     /// a string, Buffer, ArrayBufferView, or number.
     /// </param>
-    abstract ``done`` : ?err: U2<Error, string> * ?result: obj -> unit
+    abstract ``done`` : ?err : U2<Error, string> * ?result : obj -> unit
     /// HTTP request object. Provided to your function when using HTTP Bindings.
     abstract req : HttpRequest option with get, set
     /// HTTP response object. Provided to your function when using HTTP Bindings.
@@ -169,15 +169,15 @@ type BindingDefinition =
 type Logger =
     /// Writes streaming function logs at the default trace level.
     [<Emit "$0($1...)">]
-    abstract Invoke : [<ParamArray>] args: obj [] -> unit
+    abstract Invoke : [<ParamArray>] args : obj [] -> unit
     /// Writes to error level logging or lower.
-    abstract error : [<ParamArray>] args: obj [] -> unit
+    abstract error : [<ParamArray>] args : obj [] -> unit
     /// Writes to warning level logging or lower.
-    abstract warn : [<ParamArray>] args: obj [] -> unit
+    abstract warn : [<ParamArray>] args : obj [] -> unit
     /// Writes to info level logging or lower.
-    abstract info : [<ParamArray>] args: obj [] -> unit
+    abstract info : [<ParamArray>] args : obj [] -> unit
     /// Writes to verbose level logging.
-    abstract verbose : [<ParamArray>] args: obj [] -> unit
+    abstract verbose : [<ParamArray>] args : obj [] -> unit
 
 [<AllowNullLiteral>]
 type HttpResponse =
@@ -187,7 +187,7 @@ type HttpResponse =
 [<AllowNullLiteral>]
 type HttpRequestHeaders =
     [<EmitIndexer>]
-    abstract Item : key: string -> string with get, set
+    abstract Item : key : string -> string with get, set
 
 [<StringEnum>]
 [<RequireQualifiedAccess>]
@@ -199,7 +199,7 @@ type CookieSameSite =
 [<AllowNullLiteral>]
 type TraceContextAttributes =
     [<EmitIndexer>]
-    abstract Item : k: string -> string with get, set
+    abstract Item : k : string -> string with get, set
 
 [<StringEnum>]
 [<RequireQualifiedAccess>]

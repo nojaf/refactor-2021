@@ -5,18 +5,18 @@ open AzureFunctions
 open System
 open Fibonacci.Shared
 
-let private (|ValidInput|_|) (n:string) =
-    match Int32.TryParse(n) with
+let private (|ValidInput|_|) (n : string) =
+    match Int32.TryParse (n) with
     | true, n when (n > 0) -> Some n
     | _ -> None
 
-let private fn (context: Context) (req: HttpRequest) : unit =
+let private fn (context : Context) (req : HttpRequest) : unit =
     let res = createEmpty<HttpResponse>
     let nParam = req.``params``.["n"]
 
     match nParam with
     | ValidInput n ->
-        context.log.info ("Calculating Fibonacci for {n}")
+        context.log.info ($"Calculating Fibonacci for {n}")
         res.status <- 200
         res.body <- string (fibonacci n)
     | _ ->
@@ -27,4 +27,4 @@ let private fn (context: Context) (req: HttpRequest) : unit =
     context.res <- Some res
     context.``done`` ()
 
-exportDefault (Action<_, _>(fn))
+exportDefault (Action<_, _> (fn))
