@@ -5,7 +5,7 @@ open Fable.Core.JsInterop
 open Fable.Core.JS
 open AzureFunctions
 
-let private fn (context: Context, req: HttpRequest) : unit =
+let private fn (context: Context) (req: HttpRequest) : unit =
     printfn "JavaScript HTTP trigger function processed a request."
     let name = 
         req.query.["name"] 
@@ -23,7 +23,7 @@ let private fn (context: Context, req: HttpRequest) : unit =
 
     context.``done``()
 
-exportDefault fn
+exportDefault (System.Action<_,_>(fn))
 
 (*
 module.exports = async function (context, req) {
