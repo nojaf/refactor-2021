@@ -1,24 +1,38 @@
+import { ofSeq, empty, cons, fold, head } from "./nodejs/Fibonacci/.fable/fable-library.3.1.5/List.js";
+import { rangeNumber } from "./nodejs/Fibonacci/.fable/fable-library.3.1.5/Seq.js";
 
 export function fibonacci(n) {
-    const fib = (n_1_mut, continuation_mut) => {
-        fib:
-        while (true) {
-            const n_1 = n_1_mut, continuation = continuation_mut;
-            switch (n_1) {
-                case 1:
-                case 2: {
-                    return continuation(1) | 0;
+    return head(fold((acc, n_1) => {
+        switch (n_1) {
+            case 1:
+            case 2: {
+                return cons(1, acc);
+            }
+            default: {
+                let pattern_matching_result, a, b;
+                if (acc.tail != null) {
+                    if (acc.tail.tail != null) {
+                        pattern_matching_result = 0;
+                        a = acc.head;
+                        b = acc.tail.head;
+                    }
+                    else {
+                        pattern_matching_result = 1;
+                    }
                 }
-                default: {
-                    const n_2 = n_1 | 0;
-                    n_1_mut = (n_2 - 1);
-                    continuation_mut = ((n1) => fib(n_2 - 2, (n2) => continuation(n1 + n2)));
-                    continue fib;
+                else {
+                    pattern_matching_result = 1;
+                }
+                switch (pattern_matching_result) {
+                    case 0: {
+                        return cons(a + b, acc);
+                    }
+                    case 1: {
+                        return acc;
+                    }
                 }
             }
-            break;
         }
-    };
-    return fib(n, (x) => x) | 0;
+    }, empty(), ofSeq(rangeNumber(1, 1, n))));
 }
 

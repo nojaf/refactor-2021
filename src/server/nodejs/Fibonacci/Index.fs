@@ -1,43 +1,30 @@
-﻿module Prime
+﻿module Fibonacci.Function
 
-open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Core.JS
 open AzureFunctions
+open System
+open Fibonacci.Shared
+
+let private (|ValidInput|_|) (n:string) =
+    match Int32.TryParse(n) with
+    | true, n when (n > 0) -> Some n
+    | _ -> None
 
 let private fn (context: Context) (req: HttpRequest) : unit =
-    context.log.info (sprintf "REQ: %A" req.``params``.["n"])
-    printfn "JavaScript HTTP trigger function processed a request."
-    let name = 
-        req.query.["name"] 
-        |> Option.ofObj
+    let res = createEmpty<HttpResponse>
+    let nParam = req.``params``.["n"]
 
-    let responseMessage =
-        match name with
-        | Some n -> $"Hello, {n}. This HTTP triggered function executed successfully."
-        | None -> "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+    match nParam with
+    | ValidInput n ->
+        context.log.info ("Calculating Fibonacci for {n}")
+        res.status <- 200
+        res.body <- string (fibonacci n)
+    | _ ->
+        context.log.warn ($"Invalid n: {nParam}")
+        res.status <- 400
+        res.body <- $"Value for n ('{nParam}') could not be parsed"
 
-    let c = createEmpty<ContextBindings>
-    c.status <- 200
-    c.body <- responseMessage
-    context.res <- Some c
+    context.res <- Some res
+    context.``done`` ()
 
-    context.``done``()
-
-exportDefault (System.Action<_,_>(fn))
-
-(*
-module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
-
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
-}
-*)
+exportDefault (Action<_, _>(fn))

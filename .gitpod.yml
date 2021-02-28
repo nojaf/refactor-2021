@@ -7,3 +7,4 @@ tasks:
 - command: sudo docker-up
   openMode: split-left
 - command: dotnet tool restore
+- command: dotnet restore refactor-2021.sln

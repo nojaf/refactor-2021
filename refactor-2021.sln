@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{ADACF9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nodejs", "nodejs", "{4CF57791-F182-403B-A4CB-E3AC27A4B5B8}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Prime", "src\server\nodejs\Prime\Prime.fsproj", "{9502F643-B6DD-4EF7-A8CD-4000D493AF8A}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fibonacci", "src\server\nodejs\Fibonacci\Fibonacci.fsproj", "{9502F643-B6DD-4EF7-A8CD-4000D493AF8A}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Functions", "src\server\dotnet\Functions.fsproj", "{B66F35AF-1FC1-4967-BE07-E0D4D9F9A82B}"
 EndProject

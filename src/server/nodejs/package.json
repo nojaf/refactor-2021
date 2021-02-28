@@ -3,6 +3,7 @@
   "version": "",
   "description": "",
   "scripts": {
+    "prebuild": "rm -f ./Fibonacci/*.js",
     "build": "dotnet fable ./Fibonacci/Fibonacci.fsproj && esbuild ./Fibonacci/Index.fs.js --bundle --outfile=./Fibonacci/index.js --platform=node --target=node12"
   },
   "author": "",

@@ -20,11 +20,11 @@ module Fibonacci =
     let Name = "name"
 
     [<FunctionName("Fibonacci")>]
-    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci")>]req: HttpRequest) (log: ILogger) =
+    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci")>] req: HttpRequest) (log: ILogger) =
         async {
             log.LogInformation("F# HTTP trigger function processed a request.")
 
-            let nameOpt = 
+            let nameOpt =
                 if req.Query.ContainsKey(Name) then
                     Some(req.Query.[Name].[0])
                 else
@@ -33,21 +33,25 @@ module Fibonacci =
             use stream = new StreamReader(req.Body)
             let! reqBody = stream.ReadToEndAsync() |> Async.AwaitTask
 
-            let data = JsonConvert.DeserializeObject<NameContainer>(reqBody)
+            let data =
+                JsonConvert.DeserializeObject<NameContainer>(reqBody)
 
             let name =
                 match nameOpt with
                 | Some n -> n
                 | None ->
-                   match data with
-                   | null -> ""
-                   | nc -> nc.Name
-            
-            let responseMessage =             
+                    match data with
+                    | null -> ""
+                    | nc -> nc.Name
+
+            let responseMessage =
                 if (String.IsNullOrWhiteSpace(name)) then
                     "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
                 else
-                    "Hello, " +  name + ". This HTTP triggered function executed successfully."
+                    "Hello, "
+                    + name
+                    + ". This HTTP triggered function executed successfully."
 
             return OkObjectResult(responseMessage) :> IActionResult
-        } |> Async.StartAsTask
+        }
+        |> Async.StartAsTask
