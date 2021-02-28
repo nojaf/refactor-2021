@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route":"fibonacci"
+      "route":"fibonacci/{n:int}"
     },
     {
       "type": "http",

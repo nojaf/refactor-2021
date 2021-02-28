@@ -6,6 +6,7 @@ open Fable.Core.JS
 open AzureFunctions
 
 let private fn (context: Context) (req: HttpRequest) : unit =
+    context.log.info (sprintf "REQ: %A" req.``params``.["n"])
     printfn "JavaScript HTTP trigger function processed a request."
     let name = 
         req.query.["name"] 

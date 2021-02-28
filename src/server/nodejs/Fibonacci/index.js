@@ -5,19 +5,19 @@ var __export = (target, all) => {
     __defProp(target, name, {get: all[name], enumerable: true});
 };
 
-// Prime/Index.fs.js
+// Fibonacci/Index.fs.js
 __markAsModule(exports);
 __export(exports, {
   default: () => Index_fs_default
 });
 
-// Prime/.fable/fable-library.3.1.5/Int32.js
+// Fibonacci/.fable/fable-library.3.1.5/Int32.js
 var NumberStyles;
 (function(NumberStyles2) {
   NumberStyles2[NumberStyles2["AllowHexSpecifier"] = 512] = "AllowHexSpecifier";
 })(NumberStyles || (NumberStyles = {}));
 
-// Prime/.fable/fable-library.3.1.5/Numeric.js
+// Fibonacci/.fable/fable-library.3.1.5/Numeric.js
 var symbol = Symbol("numeric");
 function isNumeric(x) {
   return typeof x === "number" || (x === null || x === void 0 ? void 0 : x[symbol]);
@@ -65,7 +65,7 @@ function toHex(x) {
   }
 }
 
-// Prime/.fable/fable-library.3.1.5/lib/long.js
+// Fibonacci/.fable/fable-library.3.1.5/lib/long.js
 var wasm = null;
 try {
   wasm = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([
@@ -815,7 +815,7 @@ function fromBytesBE(bytes, unsigned) {
   return new Long(bytes[4] << 24 | bytes[5] << 16 | bytes[6] << 8 | bytes[7], bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3], unsigned);
 }
 
-// Prime/.fable/fable-library.3.1.5/Util.js
+// Fibonacci/.fable/fable-library.3.1.5/Util.js
 function isArrayLike(x) {
   return Array.isArray(x) || ArrayBuffer.isView(x);
 }
@@ -978,7 +978,7 @@ function compare3(x, y) {
   }
 }
 
-// Prime/.fable/fable-library.3.1.5/Date.js
+// Fibonacci/.fable/fable-library.3.1.5/Date.js
 function dateOffsetToString(offset) {
   const isMinus = offset < 0;
   offset = Math.abs(offset);
@@ -1089,7 +1089,7 @@ function toString2(date, format, _provider) {
   return date.offset != null ? dateToStringWithOffset(date, format) : dateToStringWithKind(date, format);
 }
 
-// Prime/.fable/fable-library.3.1.5/Types.js
+// Fibonacci/.fable/fable-library.3.1.5/Types.js
 function seqToString(self) {
   let count = 0;
   let str = "[";
@@ -1192,7 +1192,7 @@ var FSharpRef = class {
   }
 };
 
-// Prime/.fable/fable-library.3.1.5/String.js
+// Fibonacci/.fable/fable-library.3.1.5/String.js
 var fsFormatRegExp = /(^|[^%])%([0+\- ]*)(\*|\d+)?(?:\.(\d+))?(\w)/;
 var interpolateRegExp = /(?:(^|[^%])%([0+\- ]*)(\d+)?(?:\.(\d+))?(\w))?%P\(\)/g;
 function isLessThan(x, y) {
@@ -1321,16 +1321,18 @@ function padLeft(str, len, ch, isRight) {
   return str;
 }
 
-// Prime/.fable/fable-library.3.1.5/Option.js
+// Fibonacci/.fable/fable-library.3.1.5/Option.js
 function ofNullable(x) {
   return x == null ? void 0 : x;
 }
 
-// Prime/Index.fs.js
+// Fibonacci/Index.fs.js
 function fn(context, req) {
+  let arg10;
+  context.log.info((arg10 = req.params["n"], toText(printf("REQ: %A"))(arg10)));
   toConsole(printf("JavaScript HTTP trigger function processed a request."));
   const name = ofNullable(req.query["name"]);
-  const responseMessage = name == null ? "This HTTP triggered function executed successfully. Trigger Pass a name in the query string or in the request body for a personalized response." : toText(interpolate("Hello, %P(). This HTTP triggered function executed successfully.", [name]));
+  const responseMessage = name == null ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response." : toText(interpolate("Hello, %P(). This HTTP triggered function executed successfully.", [name]));
   const c = {};
   c.status = 200;
   c.body = responseMessage;

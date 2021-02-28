@@ -157,15 +157,15 @@ type [<AllowNullLiteral>] BindingDefinition =
 /// Allows you to write streaming function logs.
 type [<AllowNullLiteral>] Logger =
     /// Writes streaming function logs at the default trace level.
-    [<Emit "$0($1...)">] abstract Invoke: [<ParamArray>] args: obj option[] -> unit
+    [<Emit "$0($1...)">] abstract Invoke: [<ParamArray>] args: obj[] -> unit
     /// Writes to error level logging or lower.
-    abstract error: [<ParamArray>] args: obj option[] -> unit
+    abstract error: [<ParamArray>] args: obj[] -> unit
     /// Writes to warning level logging or lower.
-    abstract warn: [<ParamArray>] args: obj option[] -> unit
+    abstract warn: [<ParamArray>] args: obj[] -> unit
     /// Writes to info level logging or lower.
-    abstract info: [<ParamArray>] args: obj option[] -> unit
+    abstract info: [<ParamArray>] args: obj[] -> unit
     /// Writes to verbose level logging.
-    abstract verbose: [<ParamArray>] args: obj option[] -> unit
+    abstract verbose: [<ParamArray>] args: obj[] -> unit
 
 type [<AllowNullLiteral>] ContextBindings =
     abstract status: int with get, set
