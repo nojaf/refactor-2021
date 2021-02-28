@@ -9,7 +9,7 @@ open Microsoft.AspNetCore.Http
 open Newtonsoft.Json
 open Microsoft.Extensions.Logging
 
-module Prime =
+module Fibonacci =
     // Define a nullable container to deserialize into.
     [<AllowNullLiteral>]
     type NameContainer() =
@@ -19,8 +19,8 @@ module Prime =
     [<Literal>]
     let Name = "name"
 
-    [<FunctionName("Prime")>]
-    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)>]req: HttpRequest) (log: ILogger) =
+    [<FunctionName("Fibonacci")>]
+    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci")>]req: HttpRequest) (log: ILogger) =
         async {
             log.LogInformation("F# HTTP trigger function processed a request.")
 
