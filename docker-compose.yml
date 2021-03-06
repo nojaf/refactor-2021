@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  fable-client:
+    image: mcr.microsoft.com/dotnet/sdk:5.0-focal
+    container_name: fable-client
+    volumes:
+      - /workspace/refactor-2021:/workspace/refactor-2021
+    working_dir: /workspace/refactor-2021
+    command: >
+      bash -c "dotnet tool restore && dotnet fable watch ./src/client/FableApp/FableApp.fsproj --outDir ./src/client/src/bin"
+  snowpack:
+    image: node:14
+    container_name: snowpack
+    volumes:
+      - /workspace/refactor-2021/src/client:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fable-client
+    working_dir: /app
+    command: >
+      bash -c "npm i && npm start"
+  node-function:
+    container_name: node-function
+    build:
+      context: ./
+      dockerfile: NodeJs.Dockerfile
+    ports:
+      - "7000:7000"
