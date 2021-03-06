@@ -8,7 +8,7 @@
   <ItemGroup>
     <Compile Include="../../Shared.fs" />
     <Compile Include="AzureFunctions.fs" />
-    <Compile Include="Index.fs" />
+    <Compile Include="Fibonacci.fs" />
   </ItemGroup>
 
   <ItemGroup>

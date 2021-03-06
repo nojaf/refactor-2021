@@ -9,3 +9,6 @@
 func start --csharp --port 8000 --verbose
 
  https://github.com/evanw/esbuild/issues/37
+
+ docker build --rm -t node-function -f NodeJs.Dockerfile .
+ docker run -it -p "7000:7000" --rm node-function:latest

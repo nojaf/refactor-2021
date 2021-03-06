@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETCoreApp,Version=v5.0": {
+      "Fable.Core": {
+        "type": "Direct",
+        "requested": "[3.2.4, )",
+        "resolved": "3.2.4",
+        "contentHash": "4gSXJih9myOk9AeaNhMkQlvfUR8wcS5bP0o0zh8gJu6H/GPw0WkFWjisL7JGsiA+SLKPr5zCbD59reFEUNMUKw==",
+        "dependencies": {
+          "FSharp.Core": "4.7.2"
+        }
+      },
+      "Fable.Node": {
+        "type": "Direct",
+        "requested": "[1.2.0, )",
+        "resolved": "1.2.0",
+        "contentHash": "FVUFFcryE6pldYopULB+mpRtE6cmlG1evvVE9wDB0O8JKWLGrStHmNF4fqn7cyN1j2ufsvlPcw88PqoCt2OGuQ==",
+        "dependencies": {
+          "FSharp.Core": "5.0.0",
+          "Fable.Core": "3.1.2"
+        }
+      },
+      "FSharp.Core": {
+        "type": "Direct",
+        "requested": "[5.0.0, )",
+        "resolved": "5.0.0",
+        "contentHash": "iHoYXA0VaSQUONGENB1aVafjDDZDZpwu39MtaRCTrmwFW/cTcK0b2yKNVYneFHJMc3ChtsSoM9lNtJ1dYXkHfA=="
+      }
+    }
+  }
+}
