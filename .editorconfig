@@ -11,3 +11,6 @@ fsharp_align_function_signature_to_indentation=true
 fsharp_alternative_long_member_definitions=true
 fsharp_disable_elmish_syntax=true
 fsharp_multi_line_lambda_closing_newline=true
+
+[/src/client/FableApp/*.fs]
+fsharp_disable_elmish_syntax=false
