@@ -12,6 +12,9 @@ let private (|ValidInput|_|) (n : string) =
 
 let private fn (context : Context) (req : HttpRequest) : unit =
     let res = createEmpty<HttpResponse>
+    res.headers <- createEmpty<HttpHeaders>
+    res.headers.["Access-Control-Allow-Credentials"] <- "true"
+    res.headers.["Access-Control-Allow-Origin"] <- "*"
     let nParam = req.``params``.["n"]
 
     match nParam with

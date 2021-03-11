@@ -2,6 +2,18 @@
   "version": 1,
   "dependencies": {
     ".NETCoreApp,Version=v5.0": {
+      "Fable.Fetch": {
+        "type": "Direct",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "4XfgEmCDePrLZmFzndh4jflxbVYZw5OxY5D7pKwXQq1OyY8knq3pOH7XRZDGJI9JrWitMc0cUQ0QBjxtFG0Sfg==",
+        "dependencies": {
+          "FSharp.Core": "4.7.0",
+          "Fable.Browser.Blob": "1.1.0",
+          "Fable.Core": "3.0.0",
+          "Fable.Promise": "2.0.0"
+        }
+      },
       "Fable.React": {
         "type": "Direct",
         "requested": "[7.2.0, )",
@@ -21,6 +33,18 @@
         "dependencies": {
           "FSharp.Core": "4.7.2",
           "Fable.AST": "3.0.0"
+        }
+      },
+      "Feliz.UseElmish": {
+        "type": "Direct",
+        "requested": "[1.5.1, )",
+        "resolved": "1.5.1",
+        "contentHash": "MlqRpAEiATl5RYpHi3jUQfBhErS+13lwyEIGoZLiGOI4XnhsjoNNPgb/b1sFDpm03lcDpeFbqp5BAOYnKZbB8A==",
+        "dependencies": {
+          "FSharp.Core": "4.7.2",
+          "Fable.Elmish": "3.0.6",
+          "Fable.Promise": "2.0.0",
+          "Feliz": "1.33.1"
         }
       },
       "FSharp.Core": {
@@ -80,6 +104,35 @@
         "contentHash": "Mft+v0YlEr+EL6WH7iyP8H4eGPZmgnU793RNNn5Bw5wJT+DsZii+dPlJW9ubX0lDgYQTBfnyuVUJj0+5XZdiqg==",
         "dependencies": {
           "FSharp.Core": "4.7.0"
+        }
+      },
+      "Fable.Elmish": {
+        "type": "Transitive",
+        "resolved": "3.0.6",
+        "contentHash": "KGNGJzpdFl4dIY0z6kwITyGNfh40QrrVFbIgTT55+20m4a/Bi66UC9f5xvJStdULxzDpao04w8vEJMksVsS3vw==",
+        "dependencies": {
+          "FSharp.Core": "4.6.2",
+          "Fable.Core": "3.0.0"
+        }
+      },
+      "Fable.Promise": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "rA9VD2uJTObnb8ghNmg/MTd8xMOJlVHmgNeKrP8SFMOP+tQ2tEDTf8xJ21HeR8ncuNxJP2CQkAfVlDxrLoHjZg==",
+        "dependencies": {
+          "FSharp.Core": "4.5.2",
+          "Fable.Core": "3.0.0"
+        }
+      },
+      "Feliz": {
+        "type": "Transitive",
+        "resolved": "1.33.1",
+        "contentHash": "TRIlaE557LneAx1axr+qrZzGV3YCXAel/lPo5i5kseAa8U1/csf116k8WwQ+mSYu+z27zDbwtl9tVbDtFDdEjw==",
+        "dependencies": {
+          "FSharp.Core": "4.7.2",
+          "Fable.Core": "3.1.5",
+          "Fable.React": "7.0.1",
+          "Feliz.CompilerPlugins": "1.2.0"
         }
       }
     }

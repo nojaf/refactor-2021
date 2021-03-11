@@ -10,7 +10,7 @@ services:
     command: >
       bash -c "dotnet tool restore && dotnet fable watch ./src/client/FableApp/FableApp.fsproj --outDir ./src/client/src/bin"
   snowpack:
-    image: node:14
+    image: node:14.16
     container_name: snowpack
     volumes:
       - /workspace/refactor-2021/src/client:/app
@@ -28,3 +28,12 @@ services:
       dockerfile: NodeJs.Dockerfile
     ports:
       - "7000:7000"
+  dotnet-function:
+    container_name: dotnet-function
+    image: mcr.microsoft.com/azure-functions/dotnet:3.0.3284-dotnet3-core-tools
+    volumes:
+      - /workspace/refactor-2021/src/server:/app
+    ports:
+      - "8000:8000"
+    working_dir: /app/dotnet
+    command: func start --csharp --port 8000 --verbose --cors *

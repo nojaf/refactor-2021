@@ -87,11 +87,11 @@ type HttpRequest =
     /// Request URL.
     abstract url : string with get, set
     /// HTTP request headers.
-    abstract headers : HttpRequestHeaders with get, set
+    abstract headers : HttpHeaders with get, set
     /// Query string parameter keys and values from the URL.
-    abstract query : HttpRequestHeaders with get, set
+    abstract query : HttpHeaders with get, set
     /// Route parameter keys and values.
-    abstract ``params`` : HttpRequestHeaders with get, set
+    abstract ``params`` : HttpHeaders with get, set
     /// The HTTP request body.
     abstract body : obj option with get, set
     /// The HTTP request body as a UTF-8 string.
@@ -183,9 +183,10 @@ type Logger =
 type HttpResponse =
     abstract status : int with get, set
     abstract body : string with get, set
+    abstract headers : HttpHeaders with get, set
 
 [<AllowNullLiteral>]
-type HttpRequestHeaders =
+type HttpHeaders =
     [<EmitIndexer>]
     abstract Item : key : string -> string with get, set
 

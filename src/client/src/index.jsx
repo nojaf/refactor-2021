@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './bin/App';
-import './index.css';
+import './style.sass';
+
+fetch('https://8000-aquamarine-manatee-53yzfxbx.ws-eu03.gitpod.io/fibonacci/15').then(res => res.text()).then(r => console.log(`Received ${r}`));
 
 ReactDOM.render(
   <React.StrictMode>

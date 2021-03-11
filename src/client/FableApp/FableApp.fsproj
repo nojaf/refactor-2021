@@ -6,12 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Utils.fs" />
+    <Compile Include="Fibonacci.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fable.Fetch" Version="2.2.0" />
     <PackageReference Include="Fable.React" Version="7.2.0" />
     <PackageReference Include="Feliz.CompilerPlugins" Version="1.3.0" />
+    <PackageReference Include="Feliz.UseElmish" Version="1.5.1" />
   </ItemGroup>
 
 </Project>

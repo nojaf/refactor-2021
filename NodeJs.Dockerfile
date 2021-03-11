@@ -19,4 +19,4 @@ COPY --from=node-container /app/host.json /app
 RUN mkdir ./Fibonacci
 COPY --from=node-container /app/Fibonacci/index.js /app/Fibonacci/index.js
 COPY --from=node-container /app/Fibonacci/function.json /app/Fibonacci/function.json
-ENTRYPOINT func start --javascript --port 7000 --cors *
+ENTRYPOINT func host start --javascript --port 7000 --cors *

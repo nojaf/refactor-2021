@@ -12,3 +12,7 @@ func start --csharp --port 8000 --verbose
 
  docker build --rm -t node-function -f NodeJs.Dockerfile .
  docker run -it -p "7000:7000" --rm node-function:latest
+
+ docker-compose up --build
+
+ docker exec -it fable-client dotnet fantomas src/client -r
