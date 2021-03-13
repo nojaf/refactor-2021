@@ -10,5 +10,11 @@ WORKDIR /app
 RUN npm i
 RUN npm run build
 
+FROM mcr.microsoft.com/dotnet/sdk:5.0-focal as farmer
+COPY ./infrastructure/script.fsx ./script.fsx
+RUN dotnet fsi ./script.fsx
+
 FROM scratch
-COPY --from=snowpack ./app/client.zip ./client.zip
+COPY --from=snowpack ./app/build ./client
+COPY --from=farmer ./template.json ./template.json
+COPY ./infrastructure/azure.sh ./azure.sh

@@ -2,7 +2,6 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "postbuild": "cd build && bestzip ../client.zip *",
     "test": "web-test-runner \"src/**/*.test.jsx\"",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
@@ -21,7 +20,6 @@
     "@web/test-runner": "^0.12.0",
     "chai": "^4.2.0",
     "prettier": "^2.0.5",
-    "snowpack": "^3.0.1",
-    "bestzip": "2.1.7"
+    "snowpack": "^3.0.1"
   }
 }
