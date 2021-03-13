@@ -29,6 +29,8 @@ docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0
 
 docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal bash
 
+docker run -it --rm -v "$(pwd):/app" -w "/app"  node:14.16 bash
+
 export DOCKER_BUILDKIT=1
 
 docker build -f Release.Dockerfile --output type=local,dest=./artifacts .

@@ -16,6 +16,9 @@ services:
       - /workspace/refactor-2021/src/client:/app
     ports:
       - "8080:8080"
+    environment:
+      SNOWPACK_PUBLIC_NODE_API: https://7000-${GITPOD_WORKSPACE_ID}.ws-eu03.gitpod.io
+      SNOWPACK_PUBLIC_DOTNET_API: https://7000-${GITPOD_WORKSPACE_ID}.ws-eu03.gitpod.io
     depends_on:
       - fable-client
     working_dir: /app

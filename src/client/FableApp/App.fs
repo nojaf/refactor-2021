@@ -4,7 +4,7 @@ open Fable.Core.JsInterop
 open Fable.React
 open Fable.React.Props
 open Feliz
-open Fable.Core.JS
+open Fable.Core
 open FableApp.Fibonacci
 open FableApp.Utils
 
@@ -31,6 +31,12 @@ type private Limit =
     | Set of int
     | Invalid of string
 
+[<Emit("import.meta.env.SNOWPACK_PUBLIC_NODE_API")>]
+let private nodeAPI : string = jsNative
+
+[<Emit("import.meta.env.SNOWPACK_PUBLIC_DOTNET_API")>]
+let private dotnetAPI : string = jsNative
+
 [<ReactComponent>]
 let private App () =
     let (limit, setLimit) = React.useState<Limit> (Draft "")
@@ -45,7 +51,7 @@ let private App () =
                     Fibonacci
                         {|
                             limit = limit
-                            baseUrl = "https://7000-aquamarine-manatee-53yzfxbx.ws-eu03.gitpod.io"
+                            baseUrl = nodeAPI
                             title = "Node.Js"
                         |}
                 ]
@@ -53,7 +59,7 @@ let private App () =
                     Fibonacci
                         {|
                             limit = limit
-                            baseUrl = "https://8000-aquamarine-manatee-53yzfxbx.ws-eu03.gitpod.io"
+                            baseUrl = dotnetAPI
                             title = ".NET"
                         |}
                 ]
