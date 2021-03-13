@@ -41,3 +41,5 @@ az functionapp deployment source config-zip -g <resource_group> -n \
 dotnet build -c Release /p:DeployOnBuild=true /p:DeployTarget=Package;CreatePackageOnPublish=true
 
 pwsh -c "Compress-Archive -Path ./bin/Release/netcoreapp3.1/Publish/* -DestinationPath dotnet.zip"
+
+docker run -it --rm -v "$(pwd):/app" -w "/app" mcr.microsoft.com/powershell:alpine-3.12 sh
