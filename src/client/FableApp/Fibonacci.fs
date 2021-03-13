@@ -97,8 +97,7 @@ let Fibonacci
                             let fc = (float) current
                             let fl = (float) model.Limit
 
-                            (fc / fl) * 100.0
-                            |> sprintf "%.2f%%"
+                            (fc / fl) * 100.0 |> sprintf "%.2f%%"
 
                 div [ ClassName "progress" ] [
                     div [

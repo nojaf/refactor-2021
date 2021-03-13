@@ -33,7 +33,7 @@ let run
             log.LogInformation (sprintf "Calculating Fibonacci for %i" n)
             return sendText (string (fibonacci n))
         else
-            log.LogWarning(sprintf "Invalid n: %i" n)
+            log.LogWarning (sprintf "Invalid n: %i" n)
             return sendBadRequest (sprintf "Value for n should be positive, instead got %i" n)
     }
     |> Async.StartAsTask
