@@ -32,3 +32,10 @@ docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0
 export DOCKER_BUILDKIT=1
 
 docker build -f Release.Dockerfile --output type=local,dest=./artifacts .
+
+az functionapp deployment source config-zip -g <resource_group> -n \
+<app_name> --src <zip_file_path>
+
+dotnet build -c Release /p:DeployOnBuild=true /p:DeployTarget=Package;CreatePackageOnPublish=true
+
+pwsh -c "Compress-Archive -Path ./bin/Release/netcoreapp3.1/Publish/* -DestinationPath dotnet.zip"

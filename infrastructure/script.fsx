@@ -31,6 +31,8 @@ let nodeFunctions =
         link_to_app_insights ai
         link_to_service_plan plan
         link_to_storage_account storage.Name.ResourceName
+        https_only
+        enable_cors WebApp.AllOrigins
     }
 
 let dotnetFunctions =
@@ -40,6 +42,8 @@ let dotnetFunctions =
         link_to_app_insights ai
         link_to_service_plan plan
         link_to_storage_account storage.Name.ResourceName
+        https_only
+        enable_cors WebApp.AllOrigins
     }
 
 let deployment =

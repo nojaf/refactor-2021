@@ -22,7 +22,7 @@ let private sendBadRequest error =
 
 [<FunctionName("Fibonacci")>]
 let run
-    ([<HttpTrigger(AuthorizationLevel.Function, "get", Route = "fibonacci/{n:int}")>] req : HttpRequest)
+    ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "fibonacci/{n:int}")>] req : HttpRequest)
     (log : ILogger)
     (n : int)
     =
