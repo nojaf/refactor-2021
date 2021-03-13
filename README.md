@@ -16,3 +16,19 @@ func start --csharp --port 8000 --verbose
  docker-compose up --build
 
  docker exec -it fable-client dotnet fantomas src/client -r
+
+docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal dotnet fsi ./script.fsx
+
+docker run -it --rm -v "$(pwd):/app" -w "/app" mcr.microsoft.com/azure-cli bash
+
+docker run -it --rm -v "$(pwd):/app" -w "/app" node:14.16 bash
+
+az login
+
+docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal dotnet tool restore && dotnet fantomas . -r
+
+docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal bash
+
+export DOCKER_BUILDKIT=1
+
+docker build -f Release.Dockerfile --output type=local,dest=./artifacts .
