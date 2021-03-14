@@ -5,9 +5,6 @@ vscode:
     - ionide.ionide-fsharp@5.3.2:ktwOdXq2H8VHS6SX8scVIw==
 tasks:
 - command: sudo docker-up
-  openMode: split-left
-- command: dotnet tool restore
-- command: dotnet restore refactor-2021.sln
 ports:
   - port: 7000
     visibility: public

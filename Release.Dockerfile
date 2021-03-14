@@ -12,12 +12,11 @@ RUN dotnet fable ./src/server/nodejs/Fibonacci/Fibonacci.fsproj -o ./src/server/
 FROM node:15.11 as node
 COPY /src/server/nodejs/package.json /app/package.json
 COPY /src/server/nodejs/package-lock.json /app/package-lock.json
-COPY --from=fable /src/server/nodejs/Fibonacci/Index.js /app/Fibonacci/Index.js
 COPY --from=fable /src/server/nodejs/Fibonacci/Fibonacci.js /app/Fibonacci/Fibonacci.js
 COPY --from=fable /src/server/nodejs/Shared.js /app/Shared.js
 COPY --from=fable /src/server/nodejs/Fibonacci/.fable /app/Fibonacci/.fable
 WORKDIR /app
-RUN npm i
+RUN npm ci --no-optional
 RUN npm run build
 
 # Zip Node.Js function
