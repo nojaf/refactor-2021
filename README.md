@@ -25,7 +25,7 @@ docker run -it --rm -v "$(pwd):/app" -w "/app" node:14.16 bash
 
 az login
 
-docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal dotnet tool restore && dotnet fantomas . -r
+docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal bash -c "dotnet tool restore && dotnet fantomas ./src -r"
 
 docker run -it --rm -v "$(pwd):/app" -w "/app"  mcr.microsoft.com/dotnet/sdk:5.0-focal bash
 
