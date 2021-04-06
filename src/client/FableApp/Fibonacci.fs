@@ -9,6 +9,7 @@ open Elmish
 open Fetch
 open FableApp.Utils
 open System
+open System.Numerics
 
 type TimeSpan with
 
@@ -17,14 +18,14 @@ type TimeSpan with
 
 type private Msg =
     | Request of int
-    | Response of int * int
+    | Response of int * BigInteger
     | Finish
     | Error of exn
 
 type private Model =
     {
         BaseUrl : string
-        Values : Map<int, int>
+        Values : Map<int, BigInteger>
         Limit : int
         Error : exn option
     }
@@ -45,7 +46,7 @@ let private requestNumber baseUrl n (dispatch : Dispatch<Msg>) =
     |> Promise.bind (fun res -> res.text ())
     |> Promise.map
         (function
-        | PositiveInteger i -> Response (n, i) |> dispatch
+        | PositiveBigInteger i -> Response (n, i) |> dispatch
         | _ -> failwithf "%s did not return a positive integer" url)
     |> Promise.catchEnd (Error >> dispatch)
 
@@ -54,7 +55,7 @@ let private update msg model =
     | Request i -> model, Cmd.ofSub (requestNumber model.BaseUrl i)
     | Response (k, v) ->
         let cmd =
-            if k <= model.Limit then
+            if k < model.Limit then
                 Cmd.ofMsg (Request (k + 1))
             else
                 Cmd.ofMsg Finish
@@ -87,7 +88,7 @@ let Fibonacci
             match Map.tryFind model.Limit model.Values with
             | Some a ->
                 div [ ClassName "text-center" ] [
-                    strong [] [ ofInt a ]
+                    strong [] [ str (string a) ]
                 ]
             | None ->
                 let percentage =
