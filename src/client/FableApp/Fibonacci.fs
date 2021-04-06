@@ -8,6 +8,12 @@ open Feliz.UseElmish
 open Elmish
 open Fetch
 open FableApp.Utils
+open System
+
+type TimeSpan with
+
+    member this.AsString () =
+        this.ToString ("g", Globalization.CultureInfo.InvariantCulture)
 
 type private Msg =
     | Request of int
@@ -41,7 +47,7 @@ let private requestNumber baseUrl n (dispatch : Dispatch<Msg>) =
         (function
         | PositiveInteger i -> Response (n, i) |> dispatch
         | _ -> failwithf "%s did not return a positive integer" url)
-    |> Promise.catchEnd (fun err -> Error err |> dispatch)
+    |> Promise.catchEnd (Error >> dispatch)
 
 let private update msg model =
     match msg with
@@ -58,9 +64,7 @@ let private update msg model =
         },
         cmd
     | Error err -> { model with Error = Some err }, Cmd.none
-    | Finish ->
-        printfn "found all numbers: %A" model.Values
-        model, Cmd.none
+    | Finish -> model, Cmd.none
 
 [<ReactComponent>]
 let Fibonacci
