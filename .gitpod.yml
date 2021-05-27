@@ -5,7 +5,7 @@ vscode:
     - ionide.ionide-fsharp
     - syler.sass-indented
 tasks:
-- command: sudo docker-up
+  - command: dotnet restore ./src/client/FableApp/FableApp.fsproj
 ports:
   - port: 7000
     visibility: public
