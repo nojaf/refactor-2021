@@ -4,8 +4,9 @@ az login
 az deployment group create --resource-group refactor2021 --template-file ./template.json
 
 # deploy functions
-az functionapp deployment source config-zip -g refactor2021 -n refactor-dotnet --src ./dotnet.zip
-az functionapp deployment source config-zip -g refactor2021 -n refactor-node --src ./node.zip
+az functionapp deployment source config-zip -g refactor2021 -n refactor-dotnet --src ./dotnet.zip &
+az functionapp deployment source config-zip -g refactor2021 -n refactor-node --src ./node.zip &
+wait
 
 # Add function url to frontend config
 SNOWPACK_PUBLIC_NODE_API=$(az functionapp show --name refactor-node --resource-group refactor2021 --query "defaultHostName" --output tsv)
